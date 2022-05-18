@@ -3,8 +3,6 @@ package com.domain.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.domain.models.entities.Product;
-
 public class ResponseData<T> {
 
   private boolean status;

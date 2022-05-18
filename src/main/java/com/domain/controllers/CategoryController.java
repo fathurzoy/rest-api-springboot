@@ -62,7 +62,7 @@ public class CategoryController {
   }
 
   @PutMapping
-  public ResponseEntity<ResponseData<Category>>  update(@Valid @RequestBody CategoryData categoryData,Errors errors){
+  public ResponseEntity<ResponseData<Category>> update(@Valid @RequestBody Category category ,Errors errors){
     ResponseData<Category> responseData = new ResponseData<>();
 
     if(errors.hasErrors()){
@@ -73,7 +73,7 @@ public class CategoryController {
       responseData.setPayload(null);
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
     }
-    Category category = modelMapper.map(categoryData, Category.class);
+
     responseData.setStatus(true);
     responseData.setPayload(categoryService.save(category));
     return ResponseEntity.ok(responseData);

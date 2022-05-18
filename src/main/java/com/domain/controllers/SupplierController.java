@@ -66,7 +66,7 @@ public class SupplierController {
   }
 
   @PutMapping
-  public ResponseEntity<ResponseData<Supplier>> update(@Valid @RequestBody SupplierData supplierData, Errors errors){
+  public ResponseEntity<ResponseData<Supplier>> update(@Valid @RequestBody Supplier supplier, Errors errors){
     ResponseData<Supplier> responseData = new ResponseData<>();
     if(errors.hasErrors()){
       for(ObjectError error: errors.getAllErrors()){
@@ -77,7 +77,7 @@ public class SupplierController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
     }
 
-    Supplier supplier = modelMapper.map(supplierData, Supplier.class);
+  
 
     responseData.setStatus(true);
     responseData.setPayload(supplierService.save(supplier));

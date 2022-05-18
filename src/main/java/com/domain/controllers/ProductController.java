@@ -3,7 +3,6 @@ package com.domain.controllers;
 import javax.validation.Valid;
 
 import com.domain.dto.ResponseData;
-import com.domain.dto.SupplierData;
 import com.domain.models.entities.Product;
 import com.domain.models.entities.Supplier;
 import com.domain.services.ProductService;
@@ -43,9 +42,9 @@ public class ProductController {
   @PostMapping
   public ResponseEntity<ResponseData<Product>> create(@Valid @RequestBody Product product, Errors errors){
 
-  ResponseData<Product> responseData = new ResponseData<>();
+    ResponseData<Product> responseData = new ResponseData<>();
 
-  if(errors.hasErrors()){
+    if(errors.hasErrors()){
       for (ObjectError error : errors.getAllErrors()) {
         // System.err.println(error.getDefaultMessage());
         responseData.getMessages().add(error.getDefaultMessage());
