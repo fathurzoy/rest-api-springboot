@@ -4,11 +4,14 @@ import javax.validation.Valid;
 
 import com.domain.dto.CategoryData;
 import com.domain.dto.ResponseData;
+import com.domain.dto.SearchData;
 import com.domain.models.entities.Category;
 import com.domain.services.CategoryService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -84,4 +87,10 @@ public class CategoryController {
     categoryService.removeOne(id);
   }
   
+  @PostMapping("/search/{size}/{page}")
+  public Iterable<Category> findByName(@RequestBody SearchData searchData, @PathVariable("size") int size, @PathVariable("page") int page){
+    Pageable pageable = PageRequest.of(page, size);
+
+    return categoryService.findByName(searchData.getSearchKey(), pageable);
+  }
 }
