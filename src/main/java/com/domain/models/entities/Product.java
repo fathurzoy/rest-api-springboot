@@ -47,7 +47,7 @@ public class Product implements Serializable{
     name = "tbl_product_supplier", 
     joinColumns = @JoinColumn(name = "product_id"),
     inverseJoinColumns = @JoinColumn(name = "supplier_id"))
-  @JsonManagedReference
+  // @JsonManagedReference
   private Set<Supplier> suppliers;
 
   public Product() {

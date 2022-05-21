@@ -87,7 +87,7 @@ public class ProductController {
       // throw new RuntimeException("Validation Error");
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
     }
-  
+
     responseData.setStatus(true);
     responseData.setPayload(productService.save(product));
     return ResponseEntity.ok(responseData);
